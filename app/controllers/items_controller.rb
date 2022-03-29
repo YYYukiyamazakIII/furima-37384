@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  before_action :move_to_index, except: [:index]
+
   def index
   end
   
@@ -22,4 +24,9 @@ class ItemsController < ApplicationController
     :area_id, :date_of_shipping_id, :price).merge(user_id: current_user.id)
   end
 
+  def move_to_index
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end
