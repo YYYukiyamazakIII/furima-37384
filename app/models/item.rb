@@ -1,16 +1,15 @@
 class Item < ApplicationRecord
-  validates :image, :name, :explanation, :category_id, :status_id, :delivery_charge_id,
-  :area_id, :date_of_shipping_id, :user_id, presence: true
+  validates :image, :name, :explanation, :price, :user_id, presence: true
 
-  validates :area_id, :category_id, :date_of_shipping_id, :delivery_charge_id, :status_id, 
-  numericality: { other_than: 1 ,message: "can't be blank" }
+  validates :category_id, :status_id, :delivery_charge_id, :area_id, :date_of_shipping_id,
+            numericality: { other_than: 1, message: "can't be blank" }
 
-  with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'は半角数字を使用してください' } do
+  with_options format: { with: /\A[0-9]+\z/, message: 'は半角数字を使用してください' } do
     validates :price
   end
 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-  
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+
   belongs_to :user
   has_one_attached :image
 
