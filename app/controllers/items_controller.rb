@@ -21,11 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit
-
   end
 
   def update
@@ -49,6 +47,6 @@ class ItemsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:id])
-    redirect_to root_path if  current_user.id != @item.user.id
+    redirect_to root_path if current_user.id != @item.user.id
   end
 end
