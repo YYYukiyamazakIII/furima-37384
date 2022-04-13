@@ -9,7 +9,7 @@ RSpec.describe PurchasedItemShippingAddress, type: :model do
       sleep 0.1
     end
     context '商品購入ができるとき' do
-      it 'user_id、item_id、zip_code、area_id、municipalities、street_number、phone_number、tokenが存在すれば登録できる' do
+      it '建物名が空でも登録できる' do
         expect(@purchased_item_shipping_address).to be_valid
       end
     end
@@ -34,8 +34,8 @@ RSpec.describe PurchasedItemShippingAddress, type: :model do
         @purchased_item_shipping_address.valid?
         expect(@purchased_item_shipping_address.errors.full_messages).to include 'Zip code is invalid. Include hyphen(-)'
       end
-      it 'area_idが空では登録できない' do
-        @purchased_item_shipping_address.area_id = ''
+      it 'area_idに「---」が選択されている場合は購入できないこと' do
+        @purchased_item_shipping_address.area_id = 1
         @purchased_item_shipping_address.valid?
         expect(@purchased_item_shipping_address.errors.full_messages).to include "Area can't be blank"
       end
