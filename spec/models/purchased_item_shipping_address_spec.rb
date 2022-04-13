@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PurchasedItemShippingAddress, type: :model do
-  describe '商品購入機能'do
+  describe '商品購入機能' do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      @purchased_item_shipping_address = FactoryBot.build(:purchased_item_shipping_address, user_id: user.id, item_id: item.id) 
+      @purchased_item_shipping_address = FactoryBot.build(:purchased_item_shipping_address, user_id: user.id, item_id: item.id)
       sleep 0.1
     end
     context '商品購入ができるとき' do
@@ -32,7 +32,7 @@ RSpec.describe PurchasedItemShippingAddress, type: :model do
       it 'zip_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @purchased_item_shipping_address.zip_code = Faker::Number.number(digits: 7)
         @purchased_item_shipping_address.valid?
-        expect(@purchased_item_shipping_address.errors.full_messages).to include "Zip code is invalid. Include hyphen(-)"
+        expect(@purchased_item_shipping_address.errors.full_messages).to include 'Zip code is invalid. Include hyphen(-)'
       end
       it 'area_idが空では登録できない' do
         @purchased_item_shipping_address.area_id = ''
@@ -57,17 +57,19 @@ RSpec.describe PurchasedItemShippingAddress, type: :model do
       it 'phone_numberが半角数字以外だと登録できない' do
         @purchased_item_shipping_address.phone_number = Faker::Lorem.characters(number: 10, min_alpha: 1)
         @purchased_item_shipping_address.valid?
-        expect(@purchased_item_shipping_address.errors.full_messages).to include "Phone number is not a number"
+        expect(@purchased_item_shipping_address.errors.full_messages).to include 'Phone number is not a number'
       end
       it 'phone_numberが9桁以下だと登録できない' do
         @purchased_item_shipping_address.phone_number = Faker::Number.number(digits: 9)
         @purchased_item_shipping_address.valid?
-        expect(@purchased_item_shipping_address.errors.full_messages).to include "Phone number is too short (minimum is 10 characters)"
+        expect(@purchased_item_shipping_address.errors.full_messages).to include
+        'Phone number is too short (minimum is 10 characters)'
       end
       it 'phone_numberが12桁以上だと登録できない' do
         @purchased_item_shipping_address.phone_number = Faker::Number.number(digits: 12)
         @purchased_item_shipping_address.valid?
-        expect(@purchased_item_shipping_address.errors.full_messages).to include "Phone number is too long (maximum is 11 characters)"
+        expect(@purchased_item_shipping_address.errors.full_messages).to include
+        'Phone number is too long (maximum is 11 characters)'
       end
       it 'tokenが空では登録できない' do
         @purchased_item_shipping_address.token = ''

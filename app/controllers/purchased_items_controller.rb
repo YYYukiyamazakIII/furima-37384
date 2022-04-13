@@ -3,7 +3,7 @@ class PurchasedItemsController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    redirect_to root_path if PurchasedItem.exists?(item_id:@item.id)
+    redirect_to root_path if PurchasedItem.exists?(item_id: @item.id)
     redirect_to root_path if @item.user_id == current_user.id
     @purchased_item_shipping_address = PurchasedItemShippingAddress.new
   end
@@ -20,12 +20,15 @@ class PurchasedItemsController < ApplicationController
   end
 
   private
+
   def purchased_item_shipping_address_params
-    params.require(:purchased_item_shipping_address).permit(:zip_code, :area_id, :municipalities, :street_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:purchased_item_shipping_address).permit(:zip_code, :area_id, :municipalities, :street_number, :building_name,
+                                                            :phone_number).merge(user_id: current_user.id,
+                                                                                 item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_064ce63cb46840c07b63b1ef"
+    Payjp.api_key = 'sk_test_064ce63cb46840c07b63b1ef'
     Payjp::Charge.create(
       amount: @item.price,
       card: purchased_item_shipping_address_params[:token],
@@ -36,5 +39,4 @@ class PurchasedItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
-
 end
