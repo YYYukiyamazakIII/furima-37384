@@ -3,8 +3,11 @@ class PurchasedItemsController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    redirect_to root_path if PurchasedItem.exists?(item_id: @item.id)
-    redirect_to root_path if @item.user_id == current_user.id
+    if PurchasedItem.exists?(item_id: @item.id)
+      redirect_to root_path
+    elsif @item.user_id == current_user.id
+      redirect_to root_path
+    end
     @purchased_item_shipping_address = PurchasedItemShippingAddress.new
   end
 
