@@ -134,7 +134,7 @@
           <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
 
-            <% if PurchasedItem.exists?(item_id:item.id) %>
+            <% if item.purchased_item %>
               <div class='sold-out'>
               <span>Sold Out!!</span>
               </div>

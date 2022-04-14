@@ -10,6 +10,7 @@ RSpec.describe PurchasedItemShippingAddress, type: :model do
     end
     context '商品購入ができるとき' do
       it '建物名が空でも登録できる' do
+        @purchased_item_shipping_address.building_name = ''
         expect(@purchased_item_shipping_address).to be_valid
       end
     end

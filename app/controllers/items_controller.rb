@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order('created_at DESC')
-    @purchased_item = PurchasedItem.new
   end
 
   def new
