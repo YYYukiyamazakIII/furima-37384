@@ -73,3 +73,4 @@
 
 ### Association
 - belongs_to :purchased_item
+
