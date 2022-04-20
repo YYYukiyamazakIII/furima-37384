@@ -20,4 +20,12 @@ class Item < ApplicationRecord
   belongs_to :delivery_charge
   belongs_to :area
   belongs_to :status
+
+  def self.search(search)
+    if search != ''
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 end
