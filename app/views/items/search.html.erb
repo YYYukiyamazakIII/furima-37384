@@ -9,21 +9,17 @@
         <%= "'#{@keyword}'の検索結果" %>
       <% end %>
     </div>
-
     <ul class='item-lists'>
-
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
-
             <% if item.purchased_item %>
               <div class='sold-out'>
               <span>Sold Out!!</span>
               </div>
             <% end %>
-
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
@@ -40,7 +36,6 @@
           <% end %>
         </li>
       <% end %>
-
       <% unless @items.exists? %>
         <div class="message" >
           商品がありません
