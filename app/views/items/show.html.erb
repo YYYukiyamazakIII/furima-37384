@@ -66,10 +66,10 @@
       </tbody>
     </table>
     <div class="option">
-      <%= form_with url: item_good_items_path(@item), method: :post, local: true do |f| %>
-        <button class="favorite-btn">
+      <%= form_with url: item_good_items_path(@item), method: :post, id: "form", local: true do |f| %>
+        <button id="favorite-btn">
           <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-          <span>お気に入り <%= @good_item.count %></span>
+          <span id="good_item_count">お気に入り <%= @good_item.count %></span>
         </button>
       <% end %>
       <div class="report-btn">
