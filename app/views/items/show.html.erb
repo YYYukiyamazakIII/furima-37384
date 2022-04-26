@@ -66,10 +66,12 @@
       </tbody>
     </table>
     <div class="option">
-      <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
-      </div>
+      <%= form_with url: item_good_items_path(@item), method: :post, id: "form", local: true do |f| %>
+        <button id="favorite-btn">
+          <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+          <span id="good_item_count">お気に入り <%= @good_item.count %></span>
+        </button>
+      <% end %>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
         <span>不適切な商品の通報</span>

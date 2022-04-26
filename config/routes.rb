@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :purchased_items, only: [:index, :create]
     resources :comments, only: :create
+    resources :good_items, only: [:create, :destroy]
     collection do
       get 'search'
     end

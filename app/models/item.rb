@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :purchased_item
   has_many :comments
+  has_many :good_items
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category

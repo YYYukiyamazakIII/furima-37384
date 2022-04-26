@@ -18,6 +18,7 @@
 - has_many :items
 - has_many :comments
 - has_many :purchased_items
+- has_many :good_items
 
 ## items テーブル
 | Colum               | Type       | Options                        |
@@ -37,6 +38,7 @@
 - belongs_to :user
 - has_many :comments
 - has_one :purchased_item
+- has_many :good_items
 
 ## comments テーブル
 | Colum | Type       | Options                        |
@@ -73,3 +75,13 @@
 
 ### Association
 - belongs_to :purchased_item
+
+## good_item テーブル
+| Colum | Type       | Options                        |
+| ----- | ---------- | ------------------------------ |
+| user  | references | null: false, foreign_key: true |
+| item  | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
