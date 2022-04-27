@@ -1,29 +1,56 @@
  <%= render "shared/header" %>
- 
- <%# 商品一覧 %>
-  <div class='item-contents'>
-    <div class='title'>
-      <% if @keyword == '' %>
-        <%= "'全て'の検索結果" %>
-      <% else %>
-        <%= "'#{@keyword}'の検索結果" %>
-      <% end %>
-    </div>
+  <%# 検索フォーム %>
+  <div id="detailed-search-result-wrapper">
+    <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
+      <div class="search-field">
+        <%= f.label :name, '商品名' %>
+        <br>
+        <%= f.text_field :name, placeholder: '商品名', value: params[:q]&.dig(:name) %>
+      </div>
+      <div class="search-field">
+        <%= f.label :category_id_in, "カテゴリ" %>
+        <br>
+        <%= f.collection_check_boxes(:category_id_in, Category.where(id:2..11), :id, :name, {include_blank: "---"}) %>
+      </div>
+      <div class="search-field">
+        <%= f.label "商品の状態" %>
+        <br>
+        <%= f.collection_check_boxes(:status_id_in, Status.where(id:2..7), :id, :name, {include_blank: "---"}) %>
+        <br>
+      </div>
+      <div class="search-field">
+        <%= f.label :delivery_charge_id_eq, "配送料の負担" %>
+        <br>
+        <%= f.collection_select(:delivery_charge_id_eq, DeliveryCharge.where(id:2..3), :id, :name, {include_blank: "---"}) %>
+      </div>
+      <div class="serch-field">
+        <%= f.label :date_of_shipping_id_in, "発送までの日数" %>
+        <br>
+        <%= f.collection_check_boxes(:date_of_shipping_id_in, DateOfShipping.where(id:2..4), :id, :name, {include_blank: "---"}) %>
+      </div>
+      <div class="search-field">
+        <%= f.label :price_gteq, "価格"%>
+        <br>
+        <%= f.number_field :price_gteq %> 円以上
+        <br>
+        <%= f.number_field :price_lteq %> 円以下
+      </div>
+      <%= f.submit '検索' %>
+    <% end %>
+    <%# /検索フォーム %>
 
+    <%# 商品一覧 %>
     <ul class='item-lists'>
-
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
-
             <% if item.purchased_item %>
               <div class='sold-out'>
               <span>Sold Out!!</span>
               </div>
             <% end %>
-
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
@@ -40,14 +67,14 @@
           <% end %>
         </li>
       <% end %>
-
       <% unless @items.exists? %>
         <div class="message" >
           商品がありません
         </div>
       <% end %>
     </ul>
+     <%# /商品一覧 %>
   </div>
-  <%# /商品一覧 %>
+ 
 
   <%= render "shared/footer" %>
