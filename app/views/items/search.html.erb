@@ -1,6 +1,7 @@
  <%= render "shared/header" %>
-  <%# 検索フォーム %>
+
   <div id="detailed-search-result-wrapper">
+    <%# 検索フォーム %>
     <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
       <div class="search-field">
         <%= f.label :name, '商品名' %>
@@ -60,7 +61,7 @@
               <span><%= item.price %>円<br><%= item.delivery_charge.name %></span>
               <div class='star-btn'>
                 <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
+                <span class='star-count'><%= item.good_items.count %></span>
               </div>
             </div>
           </div>
@@ -73,7 +74,7 @@
         </div>
       <% end %>
     </ul>
-     <%# /商品一覧 %>
+    <%# /商品一覧 %>
   </div>
  
 
