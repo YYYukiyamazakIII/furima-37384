@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
     @good_item = @item.good_items
     @comments = @item.comments.includes(:user)
     @comment = Comment.new
+    items = Item.order('created_at DESC')
+    @item_first = items.first
+    @item_last = items.last
   end
 
   def edit

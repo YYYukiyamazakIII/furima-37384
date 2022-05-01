@@ -4,8 +4,9 @@
     <%# 検索フォーム %>
     <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
       <div class="search-field">
-        <%= f.label :name, '商品名' %>
-        <br>
+        <div class="search-title">
+          <%= f.label :name, '商品名' %>
+        </div>
         <%= f.text_field :name, placeholder: '商品名', value: params[:q]&.dig(:name) %>
       </div>
       <div class="search-field">
@@ -24,7 +25,7 @@
         <br>
         <%= f.collection_select(:delivery_charge_id_eq, DeliveryCharge.where(id:2..3), :id, :name, {include_blank: "---"}) %>
       </div>
-      <div class="serch-field">
+      <div class="search-field">
         <%= f.label :date_of_shipping_id_in, "発送までの日数" %>
         <br>
         <%= f.collection_check_boxes(:date_of_shipping_id_in, DateOfShipping.where(id:2..4), :id, :name, {include_blank: "---"}) %>

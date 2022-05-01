@@ -17,8 +17,19 @@ consumer.subscriptions.create({
   received(data) {
     const html = `
       <div class="comment">
-        <p class="user-info">${data.user.nickname}：</p>
-        <p>${data.comment.text}</p>
+        <div class="upper-comment">
+          <div class="comment-user">
+            ${data.user.nickname}
+          </div>
+          <div class="comment-date">
+            ${data.comment.created_at}
+          </div>
+        </div>
+        <div class="lower-comment">
+          <div class="comment-content">
+            ${data.comment.text}
+          </div>
+        </div>
       </div>`
       const comments = document.getElementById("comments")
       comments.insertAdjacentHTML('beforeend', html)

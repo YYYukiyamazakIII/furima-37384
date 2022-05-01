@@ -209,14 +209,38 @@
   font-size: 23px;
 }
 
-.comment{
-  display: flex;
-  justify-content: center;
+.comment-box {
+  padding-top: 20px;
 }
 
-.comment p{
-   margin: 0;
-   
+#comments {
+  margin-top: 40px;
+}
+
+.upper-comment {
+  display: flex;
+  align-items: center;
+}
+
+.comment-user{
+  font-size: 16px;
+  color: #434a54;
+}
+
+.comment-date{
+  font-size: 12px;
+  color: #999;
+  padding-left: 10px;
+}
+.lower-comment{
+  display: flex;
+  margin-top: 10px;
+}
+
+.comment-content{
+  font-size: 14px;
+  color: #434a54;
+  margin-bottom: 40px;
 }
 
 .user-info{
