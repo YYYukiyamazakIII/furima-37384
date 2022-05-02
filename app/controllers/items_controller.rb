@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
   before_action :get_items, only: [:index, :show]
 
   def index
-    
   end
 
   def new
@@ -31,11 +30,8 @@ class ItemsController < ApplicationController
 
     @current_user_good_item = ''
     @good_item.each do |good_item|
-      if good_item.user_id == current_user.id
-        @current_user_good_item = good_item
-      end
+      @current_user_good_item = good_item if good_item.user_id == current_user.id
     end
-
   end
 
   def edit
