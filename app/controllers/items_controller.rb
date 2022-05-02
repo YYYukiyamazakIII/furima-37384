@@ -2,9 +2,10 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :search]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :destroy]
+  before_action :get_items, only: [:index, :show]
 
   def index
-    @items = Item.order('created_at DESC')
+    
   end
 
   def new
@@ -24,9 +25,17 @@ class ItemsController < ApplicationController
     @good_item = @item.good_items
     @comments = @item.comments.includes(:user)
     @comment = Comment.new
-    items = Item.order('created_at DESC')
-    @item_first = items.first
-    @item_last = items.last
+
+    @item_first = @items.first
+    @item_last = @items.last
+
+    @current_user_good_item = ''
+    @good_item.each do |good_item|
+      if good_item.user_id == current_user.id
+        @current_user_good_item = good_item
+      end
+    end
+
   end
 
   def edit
@@ -68,5 +77,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to root_path if current_user.id != @item.user.id
+  end
+
+  def get_items
+    @items = Item.order('created_at DESC')
   end
 end
