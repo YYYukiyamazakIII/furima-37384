@@ -1,9 +1,8 @@
 
 
 #detailed-search-form{
-  padding-left: 10px;
-  background-color: white;
-  width: 300px;
+  padding: 20px;
+  width: 20vw;
 }
 
 .search-field{
@@ -30,4 +29,11 @@
 .message{
   margin-top: 50px;
   font-size: 25px;
+}
+
+.search-item-list {
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

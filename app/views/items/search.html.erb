@@ -42,7 +42,7 @@
     <%# /検索フォーム %>
 
     <%# 商品一覧 %>
-    <ul class='item-lists'>
+    <ul class='search-item-list'>
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to item_path(item.id) do %>

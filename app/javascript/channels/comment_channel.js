@@ -22,7 +22,7 @@ consumer.subscriptions.create({
             ${data.user.nickname}
           </div>
           <div class="comment-date">
-            ${data.comment.created_at}
+            ${data.comment.created_at.slice(0,10)}
           </div>
         </div>
         <div class="lower-comment">

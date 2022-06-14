@@ -91,7 +91,6 @@
     </div>
   </div>
   <%# /商品の概要 %>
-
   <div class="comment-box">
     <h4>＜コメント一覧＞</h4>
     <div id="comments">
@@ -101,7 +100,7 @@
             <%= comment.user.nickname %>
           </div>
           <div class="comment-date">
-            <%= comment.created_at %>
+            <%= comment.created_at.to_s.slice(0..10) %>
           </div>
         </div>
         <div class="lower-comment">
